@@ -1,0 +1,132 @@
+/* 	
+	rolandacteon
+	White Scheme
+*/
+
+/* General Styling */
+body {
+	font-family: Georgia, Times, Serif;
+	font-size: 13px;
+	color: #424242;
+}
+a, #footer .textwidget a, .box ul li a {
+	color: #000;
+}
+a:hover, .box ul li a:hover, .textwidget a:hover {
+	color: #424242;
+	border-bottom: 1px solid #000;
+}
+
+#topnav {
+	background: #fafafa;
+
+}
+#topnav ul {
+	
+}
+#topnav .container {
+	border-bottom: 1px solid #efefef;
+}
+#topnav ul li a {
+	color: #000;
+	text-shadow: none;
+}
+#topnav .tag {
+	color: #000;
+	font: 14px/48px Georgia, Times, Serif
+}
+#topnav ul li a:hover, #topnav .current-menu-item a, #topnav .current_page_item a {
+	background: none;
+	color: #424242 !important;
+	background: #efefef;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	border-radius: 4px;
+}
+#topnav ul li.sfHover a {
+	background: #efefef;
+}
+ul.sf-menu ul.sub-menu {
+	background: #efefef;
+}
+ul.sf-menu ul.sub-menu li {
+	background: none;
+	border-bottom: 1px solid #dfdfdf;
+}
+ul.sf-menu ul.sub-menu li:last-child {
+	border-bottom: none;
+}
+.box h2 {
+	color: inherit;
+	text-shadow: none;
+}
+#footer {
+	background: none;
+}
+#footer .container .copyright, #footer .container {
+	border-top: 1px solid #efefef;
+	font-weight: normal;
+	text-transform: capitalize;
+}
+#footer .textwidget {
+	color: #424242;
+}
+#footer .textwidget a {
+	/* color: #000; */
+}
+.box ul li {
+	border-bottom: 1px solid #efefef;
+}
+.box ul li a {
+	/* color: #000; */
+}
+.box ul li a:hover, .textwidget a:hover {
+	/* color: #BCBCBC; */
+}
+div.current-title  {
+	background: none;
+	border-bottom: 1px solid #efefef;
+}
+div.current-title h1 {
+	font-weight: normal;
+	padding-left: 0px;
+	font-family: "Helvetica Nueue", Helvetica, Arial, Sans-Serif;
+	color: #908787;
+}
+.sidebar-single .widget h2, .sidebar .widget h2, #comments-title h2, #respond h3 {
+	background: none;
+	border-bottom: 1px solid #efefef;
+	font-weight: normal;
+	font-family: "Helvetica Nueue", Helvetica, Arial, Sans-Serif;
+	padding-top: 20px;
+	color: #908787;
+}
+.post {
+	border-bottom: 1px solid #efefef;
+}
+#comments-title h2, #respond h3 {
+	padding-left: 0px;
+}
+#commentform input, #commentform textarea {
+	background: #efefef;
+}
+.title h2 {
+	font-weight: normal;
+}
+.navigation .alignleft, .navigation .alignright {
+	font-weight: normal;
+}
+.title .meta {
+	font-family: "Helvetica Nueue", Helvetica, Arial, Sans-Serif;
+}
+.wp-caption {
+	margin: 5px;
+}
+.wp-caption a:hover {
+	border-bottom: 0px !important;
+}
+.current-title .category a {
+	font-weight: normal;
+}

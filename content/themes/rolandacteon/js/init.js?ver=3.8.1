@@ -1,0 +1,151 @@
+(function($) {
+  Fotofolio2 = {
+    settings: {},
+    $preview: null,
+    slideCurrentThumbnail: 0,
+    slideTimeout: null,
+    init: function() {
+      this.settings = Fotofolio2_settings;
+
+      // Disable right click
+      if (Fotofolio2_settings.rightClickDisable) {
+        $(document).ready(function(){
+          $(document).bind("contextmenu",function(e){
+            return false;
+          });
+        });
+      }
+      
+      // Create superfish menu
+      $('.sf-menu').superfish();
+
+      // Build slider and thumbnail navigation
+      this.$preview = $('.preview .items');
+
+      $('a', '.preview .items').each(function() {
+          var id = $(this).parent('li').attr('id').substring(5);
+          $(this).clone().attr('id', 'preview-' + id).hide().appendTo('#previews');
+      });
+
+      $('.items', '.thumbs .container').css('width', $('li', '.thumbs .container').length * 86);
+
+      $('#slide .preview').css('height', Fotofolio2.settings.sliderHeight);
+      Fotofolio2.$preview.xfade({
+        height:   430,
+        timeout:  Fotofolio2.settings.sliderTimeout,
+        effect:   Fotofolio2.settings.sliderFx,
+        speed:    Fotofolio2.settings.sliderSpeed
+      });
+
+      $('.thumbs .container').serialScroll({
+        items:'li',
+        start:0,
+        duration: 300,
+        force:true,
+        axis:'x',
+        step: 1,
+        stop:true,
+        cycle: false,
+        lazy: true,
+        lock: true,
+        easing:'easeOutExpo',
+        prev:'.thumbs .prev',
+        next:'.thumbs .next',
+        onBefore: Fotofolio2.discoverSlide
+      });
+
+      this.rebindThumbnails();
+    },
+    discoverSlide: function(e, elem, pane, items, pos) {
+      var $thumbs = $('li', '.thumbs .container');
+
+      if (pos > Fotofolio2.slideCurrentThumbnail && $thumbs.length >= 10 && pos > 0) {
+        $.get(WP_AjaxUrl, {'action': 'load_slide_thumbnail', 'offset': $thumbs.length}, function(res) {
+            if (res) {
+                var $items = $('.items', '.thumbs .container');
+
+                $(res).appendTo($items).fadeIn();
+    
+                $thumbs = $('li', '.thumbs .container');
+                $items.css('width', $thumbs.length * 86);
+                Fotofolio2.rebindThumbnails();
+            }
+        });
+      }
+      
+      this.slideCurrentThumbnail = pos;
+    },
+    showLoading: function() {
+        $('#loading').css('z-index', $('li', Fotofolio2.$preview).length + 2);
+        $('#loading').fadeIn();
+    },
+    hideLoading: function() {
+        $('#loading').css('z-index', 0);
+        $('#loading').fadeOut();
+    },
+    hideSlide: function() {
+      if (Fotofolio2.$preview.css('display') != '') {
+        if (Fotofolio2.settings.sliderFx == 'slide') Fotofolio2.$preview.slideUp(Fotofolio2.settings.sliderSpeed);
+        else Fotofolio2.$preview.fadeOut(Fotofolio2.settings.sliderSpeed);
+      }
+    },
+    showPreview: function(id) {
+      if ($('#preview-' + id).css('display') != 'none') return;
+
+      this.hideSlide();
+
+      $('#previews').css('z-index', $('li', Fotofolio2.$preview).length + 1);
+      var $current = $('a:visible', '#previews');
+      if ($current.length > 0) {
+        if (Fotofolio2.settings.sliderFx == 'slide') $current.slideUp(Fotofolio2.settings.sliderSpeed);
+        else $current.fadeOut(Fotofolio2.settings.sliderSpeed);
+      }
+        
+      if (Fotofolio2.settings.sliderFx == 'slide') $('#preview-' + id).slideDown(Fotofolio2.settings.sliderSpeed, Fotofolio2.continueSlider)
+      else $('#preview-' + id).fadeIn(Fotofolio2.settings.sliderSpeed, Fotofolio2.continueSlider);
+    },
+    loadPreview: function(id) {
+      Fotofolio2.$preview.xfadeStop();
+
+      // Not loaded, call the ajax
+      if ($('#preview-' + id).length == 0) {
+          Fotofolio2.showLoading();
+          $.get(WP_AjaxUrl, {'action': 'load_slide_preview', 'id': id}, function(res) {
+              $(res).appendTo('#previews');
+              Fotofolio2.showPreview(id);
+              Fotofolio2.hideLoading();
+          });
+      } else Fotofolio2.showPreview(id);
+    },
+    continueSlider: function() {
+        if (Fotofolio2.slideTimeout !== null) clearTimeout(Fotofolio2.slideTimeout);
+        Fotofolio2.slideTimeout = setTimeout(function(){
+            if (Fotofolio2.settings.sliderFx == 'slide') {
+              $('a:visible', '#previews').slideUp(Fotofolio2.settings.sliderSpeed);
+              Fotofolio2.$preview.slideDown(Fotofolio2.settings.sliderSpeed, function() {
+                Fotofolio2.$preview.xfadeStart();
+                $('#previews').css('z-index', 0);
+              });
+            } else {
+              $('a:visible', '#previews').fadeOut(Fotofolio2.settings.sliderSpeed);
+              Fotofolio2.$preview.fadeIn(Fotofolio2.settings.sliderSpeed, function() {
+                Fotofolio2.$preview.xfadeStart();
+                $('#previews').css('z-index', 0);
+              });
+            }
+            
+        }, Fotofolio2.settings.sliderTimeout);
+    },
+    rebindThumbnails: function() {
+      $('.thumb a', '.thumbs').unbind();
+      $('.thumb a', '.thumbs').click(function() {
+        Fotofolio2.loadPreview($(this).parent().attr('id').substring(6));
+        return false;
+      })
+    }
+  }
+})(jQuery);
+
+jQuery(document).ready(function() { 
+    Fotofolio2.init();
+});
