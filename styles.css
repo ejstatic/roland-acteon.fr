@@ -29,7 +29,7 @@ main{
 
 .elements{
     display: flex;
-    transition: 1s linear;
+    transition: 2s linear;
 }
 
 .element{
