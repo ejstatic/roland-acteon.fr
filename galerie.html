@@ -83,72 +83,19 @@ h2 {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carousel</title>
     <!-- Fichiers CSS -->
-   <style>
-     body{
-    margin: 0;
-}
-
-main{
-    width: 80%;
-    margin: auto;
-}
-
-.diapo{
-    position: relative;
-    overflow: hidden;
-}
-
-#nav-droite, #nav-gauche{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 3em;
-}
-
-#nav-droite{
-    right: 20px;
-}
-#nav-gauche{
-    left: 20px;
-}
-
-.elements{
-    display: flex;
-    transition: 1s linear;
-}
-
-.element{
-    flex: 1 0 100%;
-    position: relative;
-}
-
-.element > img{
-    width: 100%;
-}
-
-.caption{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(255,255,255,0.4);
-    padding: 30px;
-}
-        </style>
+   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <main>
-        <h1>Diaporama</h1>
-
-        <!-- Conteneur principal de tout le diaporama -->
+  
+      <!-- Conteneur principal de tout le diaporama -->
         <div class="diapo">
             <!-- Conteneur des "diapos" -->
             <div class="elements">
                 <!-- Première diapo -->
                 <div class="element active">
-                    <img src=/content/uploads/"flyer-salon-international-des-arts-826-412.jpg" alt="Image 1">
+                    <img src="../content/uploads/flyer-salon-international-des-arts-826-412.jpg" alt="Image 1">
                     <div class="caption">
                         <h2>Image 1</h2>
 
@@ -156,7 +103,7 @@ main{
                 </div>
                 <!-- Deuxième diapo -->
                 <div class="element">
-                    <img src=/content/uploads/"thionville-recompense-581-1032.jpg" alt="Image 2">
+                    <img src="../content/uploads/thionville-recompense-581-1032.jpg" alt="Image 2">
                     <div class="caption">
                         <h2>Image 2</h2>
                         
