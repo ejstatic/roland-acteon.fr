@@ -41,12 +41,3 @@ main{
     width: 100%;
 }
 
-.caption{
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(255,255,255,0.4);
-    padding: 10px;
-}
