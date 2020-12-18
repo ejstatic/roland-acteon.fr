@@ -21,15 +21,15 @@ main{
 }
 
 #nav-droite{
-    right: 50px;
+    right: 20px;
 }
 #nav-gauche{
-    left: 50px;
+    left: 20px;
 }
 
 .elements{
     display: flex;
-    transition: 2s linear;
+    transition: 1s linear;
 }
 
 .element{
@@ -44,4 +44,7 @@ main{
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.centrer {
+  text-align: center;
 }
