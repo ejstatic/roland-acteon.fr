@@ -24,7 +24,7 @@ window.onload = () => {
     prev.addEventListener("click", slidePrev)
 
     // Automatiser le diaporama
-    timer = setInterval(slideNext, 5000)
+    timer = setInterval(slideNext, 7000)
 
 
     // Mise en oeuvre du "responsive"
