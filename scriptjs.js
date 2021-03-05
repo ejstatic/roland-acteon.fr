@@ -51,20 +51,8 @@ function slideNext(){
 /**
  * Cette fonction fait défiler le diaporama vers la gauche
  */
-function slidePrev(){
-    // On décrémente le compteur
-    compteur--
 
-    // Si on dépasse le début du diaporama, on repart à la fin
-    if(compteur < 0){
-        compteur = slides.length - 1
-    }
-
-    // On calcule la valeur du décalage
-    let decal = -slideWidth * compteur
-    elements.style.transform = `translateX(${decal}px)`
-}
-
+    
     // Gérer le survol de la souris
     diapo.addEventListener("mouseover", stopTimer)
     diapo.addEventListener("mouseout", startTimer)
