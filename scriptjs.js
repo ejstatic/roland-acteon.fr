@@ -73,11 +73,4 @@ function slidePrev(){
  */
 function stopTimer(){
     clearInterval(timer)
-}
 
-/**
- * On redémarre le défilement
- */
-function startTimer(){
-    timer = setInterval(slideNext, 4000)
-}
